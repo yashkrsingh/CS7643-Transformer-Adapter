@@ -1,0 +1,11 @@
+name: transformer-adapter
+channels:
+  - defaults
+dependencies:
+  - python=3.7
+  - pip
+  - pip:
+    - pytorch-transformers
+    - adapter-transformers
+    - transformers
+    - allennlp
