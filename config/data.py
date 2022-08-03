@@ -19,3 +19,19 @@ DATASETS = {
         "dataset_size": 1688
     }
 }
+
+DATASET_PATHS = {
+    "citation_intent": {
+        "train": "../data/citation_train.jsonl",
+        "test": "../data/citation_test.jsonl",
+        "result_base": "../results/citation_intent/base",
+        "result_adapter": "../results/citation_intent/adapter"
+    },
+
+    "rct": {
+        "train": "../data/rct20k_train.jsonl",
+        "test": "../data/rct20k_test.jsonl",
+        "result_base": "../results/rct20k/base",
+        "result_adapter": "../results/rct20k/adapter"
+    }
+}

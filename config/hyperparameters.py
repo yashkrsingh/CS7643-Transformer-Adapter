@@ -1,13 +1,43 @@
-ROBERTA_CLASSIFIER_SMALL = {
+ROBERTA_PARAMS = {
     "LEARNING_RATE": 2e-5,
     "DROPOUT": 0.1,
-    "ENCODER": "CLS",
-    "NUM_FEEDFORWARD_LAYERS": 1,
-    "FEEDFORWARD_WIDTH_MULTIPLIER": 1,
-    "EMBEDDING": "ROBERTA",
     "NUM_EPOCHS": 10,
-    "PATIENCE": 3,
-    "LR_SCHEDULE": 0,
-    "GRAD_ACC_BATCH_SIZE": 16,
-    "BATCH_SIZE": 16
+    "EVAL_BATCH_SIZE": 16,
+    "TRAIN_BATCH_SIZE": 16,
+    "WEIGHT_DECAY": 0.01
+}
+
+ROBERTA_TUNING = {
+    "ROBERTA_CONFIG1": {
+        "LEARNING_RATE": 1e-6,
+        "DROPOUT": 0.1,
+        "NUM_EPOCHS": 5,
+        "EVAL_BATCH_SIZE": 16,
+        "TRAIN_BATCH_SIZE": 16,
+        "WEIGHT_DECAY": 0.01
+    },
+    "ROBERTA_CONFIG2": {
+        "LEARNING_RATE": 1e-6,
+        "DROPOUT": 0.1,
+        "NUM_EPOCHS": 5,
+        "EVAL_BATCH_SIZE": 16,
+        "TRAIN_BATCH_SIZE": 16,
+        "WEIGHT_DECAY": 0.01
+    },
+    "ROBERTA_CONFIG3": {
+        "LEARNING_RATE": 2e-5,
+        "DROPOUT": 0.1,
+        "NUM_EPOCHS": 5,
+        "EVAL_BATCH_SIZE": 16,
+        "TRAIN_BATCH_SIZE": 16,
+        "WEIGHT_DECAY": 0.01
+    },
+    "ROBERTA_CONFIG4": {
+        "LEARNING_RATE": 2e-5,
+        "DROPOUT": 0.1,
+        "NUM_EPOCHS": 10,
+        "EVAL_BATCH_SIZE": 16,
+        "TRAIN_BATCH_SIZE": 16,
+        "WEIGHT_DECAY": 0.01
+    }
 }

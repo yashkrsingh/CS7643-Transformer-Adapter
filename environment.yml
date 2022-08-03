@@ -5,7 +5,11 @@ dependencies:
   - python=3.7
   - pip
   - pip:
-    - pytorch-transformers
+    - pytorch
+    - numpy
+    - pandas
+    - sklearn
     - adapter-transformers
     - transformers
-    - allennlp
+    - datasets
+    - TensorFlow
