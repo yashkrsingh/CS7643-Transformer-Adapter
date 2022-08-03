@@ -1,13 +1,13 @@
 import numpy as np
 import pandas as pd
 from config.data import DATASET_PATHS
-from config.hyperparameters import ROBERTA_BASELINE_PARAMS, ROBERTA_TUNED_PARAMS
+from config.hyperparameters import ROBERTA_PARAMS
 from datasets import ClassLabel
 from datasets import load_dataset
 from datasets import load_metric
-from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer, TextClassificationPipeline
+from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
 from transformers import AutoTokenizer
-from transformers import DataCollatorWithPadding
+from transformers import DataCollatorWithPadding, TextClassificationPipeline
 
 
 def compute_metrics(eval_pred):
@@ -54,7 +54,6 @@ def evaluate(train_path, test_path, result_path, args):
     )
     trainer.train()
     trainer.evaluate()
-
     classifier = TextClassificationPipeline(model=model, tokenizer=tokenizer)
     print(classifier("These results are great for future purpose"))
 
@@ -63,5 +62,4 @@ if __name__ == '__main__':
 
     for key in DATASET_PATHS:
         print("Running classification task for", key, "dataset")
-        evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_BASELINE_PARAMS)
-        # evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_TUNED_PARAMS)
+        evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_PARAMS)

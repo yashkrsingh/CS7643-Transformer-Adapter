@@ -88,7 +88,7 @@ def evaluate(train_path, test_path, result_path, dataset):
     trainer.evaluate()
 
     tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
-    classifier = TextClassificationPipeline(model=model, tokenizer=tokenizer, device=training_args.device.index)
+    classifier = TextClassificationPipeline(model=model, tokenizer=tokenizer)
     print(classifier("These results are great for future purpose"))
 
 

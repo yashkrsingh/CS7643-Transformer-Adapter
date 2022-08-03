@@ -5,9 +5,9 @@ from config.hyperparameters import ROBERTA_PARAMS
 from datasets import ClassLabel
 from datasets import load_dataset
 from datasets import load_metric
-from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
+from transformers import TrainingArguments, Trainer
 from transformers import AutoTokenizer
-from transformers import DataCollatorWithPadding, AutoModelWithHeads
+from transformers import DataCollatorWithPadding, AutoModelWithHeads, TextClassificationPipeline
 
 
 def compute_metrics(eval_pred):
@@ -55,6 +55,9 @@ def evaluate(train_path, test_path, result_path, args):
         compute_metrics=compute_metrics
     )
     trainer.train()
+    trainer.evaluate()
+    classifier = TextClassificationPipeline(model=model, tokenizer=tokenizer)
+    print(classifier("These results are great for future purpose"))
 
 
 if __name__ == '__main__':
