@@ -30,13 +30,16 @@ def evaluate(train_path, test_path, result_path, dataset):
         "roberta-base",
         config=config,
     )
+    id2labeldict = {}
+    for i in range(0, labels_df.size):
+        id2labeldict[i] = labels_df[i]
 
     if dataset == 'rct':
         model.add_adapter("roberta_base_rct")
         model.add_classification_head(
             "roberta_base_rct",
             num_labels=labels_df.size,
-            id2label={0: labels_df[0], 1: labels_df[1], 2: labels_df[2], 3: labels_df[3], 4: labels_df[4]}
+            id2label=id2labeldict
         )
 
         model.train_adapter("roberta_base_rct")
