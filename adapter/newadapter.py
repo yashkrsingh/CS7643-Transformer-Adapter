@@ -58,7 +58,7 @@ def evaluate(train_path, test_path, result_path, dataset):
         model.add_classification_head(
             "roberta_base_citation",
             num_labels=labels_df.size,
-            id2label={0: labels_df[0], 1: labels_df[1], 2: labels_df[2], 3: labels_df[3], 4: labels_df[4], 5: labels_df[5]}
+            id2label=id2labeldict
         )
 
         model.train_adapter("roberta_base_citation")
@@ -88,7 +88,7 @@ def evaluate(train_path, test_path, result_path, dataset):
     trainer.evaluate()
 
     tokenizer = RobertaTokenizer.from_pretrained("roberta-base")
-    classifier = TextClassificationPipeline(model=model, tokenizer=tokenizer, device=training_args.device.index)
+    classifier = TextClassificationPipeline(model=model, tokenizer=tokenizer)
     print(classifier("These results are great for future purpose"))
 
 
