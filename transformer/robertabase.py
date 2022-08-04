@@ -48,7 +48,7 @@ def evaluate(train_path, test_path, result_path, args):
         eval_dataset=tokenized_citation["test"],
         tokenizer=tokenizer,
         data_collator=data_collator,
-        compute_metrics=compute_metrics
+        compute_metrics=compute_accuracy
     )
     trainer.train()
     trainer.evaluate()
