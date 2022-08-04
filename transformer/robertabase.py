@@ -60,5 +60,5 @@ if __name__ == '__main__':
 
     for key in DATASET_PATHS:
         print("Running classification task for", key, "dataset")
-        # evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_BASELINE_PARAMS)
-        evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_TUNED_PARAMS)
+        evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_BASELINE_PARAMS)
+        # evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_TUNED_PARAMS)
