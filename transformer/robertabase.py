@@ -4,7 +4,6 @@ from config.data import DATASET_PATHS
 from config.hyperparameters import ROBERTA_BASELINE_PARAMS, ROBERTA_TUNED_PARAMS
 from datasets import ClassLabel
 from datasets import load_dataset
-from datasets import load_metric
 from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
 from transformers import AutoTokenizer, EvalPrediction
 from transformers import DataCollatorWithPadding, TextClassificationPipeline
@@ -60,5 +59,5 @@ if __name__ == '__main__':
 
     for key in DATASET_PATHS:
         print("Running classification task for", key, "dataset")
-        # evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_BASELINE_PARAMS)
+        evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_BASELINE_PARAMS)
         evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_TUNED_PARAMS)

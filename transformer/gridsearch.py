@@ -11,3 +11,10 @@ if __name__ == '__main__':
                  DATASET_PATHS["citation_intent"]["test"],
                  DATASET_PATHS["citation_intent"]["result"],
                  item)
+
+    for key, item in ROBERTA_TUNING.items():
+        print("Running model with params as", item)
+        evaluate(DATASET_PATHS["rct"]["train"],
+                 DATASET_PATHS["rct"]["test"],
+                 DATASET_PATHS["rct"]["result"],
+                 item)
