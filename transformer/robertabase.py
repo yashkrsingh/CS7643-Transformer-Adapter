@@ -6,15 +6,13 @@ from datasets import ClassLabel
 from datasets import load_dataset
 from datasets import load_metric
 from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, EvalPrediction
 from transformers import DataCollatorWithPadding, TextClassificationPipeline
 
 
-def compute_metrics(eval_pred):
-    metric = load_metric('accuracy')
-    logits, labels = eval_pred
-    predictions = np.argmax(logits, axis=-1)
-    return metric.compute(predictions=predictions, references=labels)
+def compute_accuracy(p: EvalPrediction):
+    preds = np.argmax(p.predictions, axis=1)
+    return {"accuracy": (preds == p.label_ids).astype(np.float32).mean().item()}
 
 
 def evaluate(train_path, test_path, result_path, args):
@@ -62,5 +60,5 @@ if __name__ == '__main__':
 
     for key in DATASET_PATHS:
         print("Running classification task for", key, "dataset")
-        evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_BASELINE_PARAMS)
-        # evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_TUNED_PARAMS)
+        # evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_BASELINE_PARAMS)
+        evaluate(DATASET_PATHS[key]["train"], DATASET_PATHS[key]["test"], DATASET_PATHS[key]["result_base"], ROBERTA_TUNED_PARAMS)
