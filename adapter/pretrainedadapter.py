@@ -6,15 +6,13 @@ from datasets import ClassLabel
 from datasets import load_dataset
 from datasets import load_metric
 from transformers import TrainingArguments, Trainer
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, EvalPrediction
 from transformers import DataCollatorWithPadding, AutoModelWithHeads, TextClassificationPipeline
 
 
-def compute_metrics(eval_pred):
-    metric = load_metric('accuracy')
-    logits, labels = eval_pred
-    predictions = np.argmax(logits, axis=-1)
-    return metric.compute(predictions=predictions, references=labels)
+def compute_accuracy(p: EvalPrediction):
+  preds = np.argmax(p.predictions, axis=1)
+  return {"acc": (preds == p.label_ids).mean()}
 
 
 def evaluate(train_path, test_path, result_path, args):
@@ -52,7 +50,7 @@ def evaluate(train_path, test_path, result_path, args):
         eval_dataset=tokenized_citation["test"],
         tokenizer=tokenizer,
         data_collator=data_collator,
-        compute_metrics=compute_metrics
+        compute_metrics=compute_accuracy
     )
     trainer.train()
     trainer.evaluate()

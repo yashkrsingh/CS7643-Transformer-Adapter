@@ -10,8 +10,8 @@ from transformers import DataCollatorWithPadding, TextClassificationPipeline
 
 
 def compute_accuracy(p: EvalPrediction):
-    preds = np.argmax(p.predictions, axis=1)
-    return {"accuracy": (preds == p.label_ids).astype(np.float32).mean().item()}
+  preds = np.argmax(p.predictions, axis=1)
+  return {"acc": (preds == p.label_ids).mean()}
 
 
 def evaluate(train_path, test_path, result_path, args):
